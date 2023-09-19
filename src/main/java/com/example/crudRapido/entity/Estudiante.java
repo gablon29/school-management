@@ -16,11 +16,14 @@ public class Estudiante {
     @Id
     @GeneratedValue(strategy = GenerationType .IDENTITY)
     private Long estudianteId;
-
+    
+    @Column(unique = true, nullable = false)
     private String firstName;
+
+    @Column(unique = true, nullable = false)
     private String lastName;
 
-    @Column(name = "email_address", unique = true)
+    @Column(name = "email_address", unique = true, nullable = false)
     private String email;
 
 }
