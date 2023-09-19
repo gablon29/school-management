@@ -32,12 +32,20 @@ public class EstudianteController {
     
     @GetMapping("/{estudianteId}")
     public Optional<Estudiante> getById(@PathVariable("estudianteId") Long estudianteId) {
+        logger.info("Peticion realizada con exito");
         return estudianteService.getEstudiante(estudianteId);
     }
 
     @PostMapping
     public void saveOrUpdate(@RequestBody Estudiante estudiante) {
-         estudianteService.saveOrUpdate(estudiante);
+        try {
+            estudianteService.saveOrUpdate(estudiante);
+            logger.info("Peticion Post realizada con exito");
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error("Error al procesar la peticion POST", e.getMessage());
+        }
+            
     }
     @DeleteMapping("/{estudianteId}")
     public void delete(@PathVariable("estudianteId") Long id) {
